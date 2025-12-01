@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2421",
+                        "text-light-primary": "#0d1b12",
+                        "text-light-secondary": "#4c9a66",
+                        "text-dark-primary": "#e7f3eb",
+                        "text-dark-secondary": "#a2cbb2",
+                        "border-light": "#e7f3eb",
+                        "border-dark": "#2d3a3a"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col">
+<div class="flex-grow">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+<div class="grid grid-cols-1 gap-8 lg:grid-cols-4">
+<!-- SideNavBar -->
+<aside class="lg:col-span-1">
+<div class="flex h-full flex-col justify-between rounded-xl bg-surface-light dark:bg-surface-dark p-4 shadow-sm dark:shadow-none border border-border-light dark:border-border-dark">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" data-alt="User avatar with a gradient background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBSzjV86yXJNDlo_s5HxvKVwxDom9LGDeYDIy26c3h3hDanicgLJ2FH2vNQbeiW_g1oZH_qosgOeB0LiR0ORO9VQ6UvBuz7xgOPSIiG1jRMhNBPu62NGMbUDy_g4Np3fINjqNUVkybPtQm6MHJu3sJM8xEyw9kU5Sw5k0ItmWfMToVCrrSOOVe4OORMRH1xCZ_9gyUHHp3lvONqyZKJCiqhi0ip4SIjtC6zyJIQilOUk9Xch2A9DBSleZWW2Xl7tW9q-WxVK-VfOHY");'></div>
+<div class="flex flex-col">
+<h1 class="text-text-light-primary dark:text-dark-primary text-base font-medium leading-normal">Beekeeper Name</h1>
+<p class="text-text-light-secondary dark:text-dark-secondary text-sm font-normal leading-normal">beekeeper@shahd.co</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 pt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/20 dark:bg-primary/30" href="#">
+<span class="material-symbols-outlined text-text-light-primary dark:text-dark-primary" style="font-variation-settings: 'FILL' 1;">settings</span>
+<p class="text-text-light-primary dark:text-dark-primary text-sm font-medium leading-normal">General</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-text-light-primary dark:text-dark-primary">notifications</span>
+<p class="text-text-light-primary dark:text-dark-primary text-sm font-medium leading-normal">Notifications</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-text-light-primary dark:text-dark-primary">account_circle</span>
+<p class="text-text-light-primary dark:text-dark-primary text-sm font-medium leading-normal">Account</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-text-light-primary dark:text-dark-primary">shield</span>
+<p class="text-text-light-primary dark:text-dark-primary text-sm font-medium leading-normal">Privacy</p>
+</a>
+</div>
+</div>
+<button class="flex w-full min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 mt-8 bg-primary text-background-dark text-sm font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-opacity">
+<span class="truncate">Save All Changes</span>
+</button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="lg:col-span-3">
+<div class="flex flex-col gap-8">
+<!-- PageHeading -->
+<div class="flex flex-wrap justify-between gap-3 px-4">
+<p class="text-text-light-primary dark:text-dark-primary text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">General Settings</p>
+</div>
+<!-- Appearance Section -->
+<div class="rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-sm dark:shadow-none">
+<div class="px-4 pt-4 md:px-6 md:pt-6">
+<h3 class="text-text-light-primary dark:text-dark-primary text-lg font-bold leading-tight tracking-[-0.015em]">Appearance</h3>
+<p class="text-text-light-secondary dark:text-dark-secondary text-base font-normal leading-normal pt-1">Customize the look and feel of the application.</p>
+</div>
+<div class="p-4 md:p-6">
+<p class="text-sm font-medium text-text-light-primary dark:text-dark-primary pb-2">Theme Preference</p>
+<div class="flex">
+<div class="flex h-10 w-full max-w-xs items-center justify-center rounded-lg bg-background-light dark:bg-background-dark p-1 border border-border-light dark:border-border-dark">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-2 has-[:checked]:bg-surface-light has-[:checked]:dark:bg-surface-dark has-[:checked]:shadow-[0_1px_3px_rgba(0,0,0,0.1)] has-[:checked]:text-text-light-primary has-[:checked]:dark:text-dark-primary text-text-light-secondary dark:text-dark-secondary text-sm font-medium leading-normal transition-colors">
+<span class="truncate">Light Mode</span>
+<input checked="" class="invisible w-0" name="theme-preference" onclick="document.documentElement.classList.remove('dark'); document.documentElement.classList.add('light');" type="radio" value="Light Mode"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-2 has-[:checked]:bg-surface-light has-[:checked]:dark:bg-surface-dark has-[:checked]:shadow-[0_1px_3px_rgba(0,0,0,0.1)] has-[:checked]:text-text-light-primary has-[:checked]:dark:text-dark-primary text-text-light-secondary dark:text-dark-secondary text-sm font-medium leading-normal transition-colors">
+<span class="truncate">Dark Mode</span>
+<input class="invisible w-0" name="theme-preference" onclick="document.documentElement.classList.add('dark');" type="radio" value="Dark Mode"/>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Profile Section -->
+<div class="rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-sm dark:shadow-none">
+<div class="px-4 pt-4 md:px-6 md:pt-6">
+<h3 class="text-text-light-primary dark:text-dark-primary text-lg font-bold leading-tight tracking-[-0.015em]">Profile Information</h3>
+<p class="text-text-light-secondary dark:text-dark-secondary text-base font-normal leading-normal pt-1">Update your account's profile information and email address.</p>
+</div>
+<div class="p-4 md:p-6 space-y-4">
+<div>
+<label class="block text-sm font-medium text-text-light-primary dark:text-dark-primary" for="fullName">Full Name</label>
+<input class="mt-1 block w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-light-primary dark:text-dark-primary shadow-sm focus:border-primary focus:ring-primary focus:ring-opacity-50 text-sm" id="fullName" type="text" value="Beekeeper Name"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-light-primary dark:text-dark-primary" for="email">Email Address</label>
+<input class="mt-1 block w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-light-primary dark:text-dark-primary shadow-sm focus:border-primary focus:ring-primary focus:ring-opacity-50 text-sm" id="email" type="email" value="beekeeper@shahd.co"/>
+</div>
+</div>
+</div>
+<!-- Password Section -->
+<div class="rounded-xl border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark shadow-sm dark:shadow-none">
+<div class="px-4 pt-4 md:px-6 md:pt-6">
+<h3 class="text-text-light-primary dark:text-dark-primary text-lg font-bold leading-tight tracking-[-0.015em]">Password</h3>
+<p class="text-text-light-secondary dark:text-dark-secondary text-base font-normal leading-normal pt-1">Change your password. Make sure it's a strong one.</p>
+</div>
+<div class="p-4 md:p-6">
+<button class="flex min-w-[84px] max-w-xs cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary/20 dark:bg-primary/30 text-text-light-primary dark:text-dark-primary text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/30 dark:hover:bg-primary/40 transition-colors">
+<span class="truncate">Change Password</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</div>
+</div>
+</body></html>

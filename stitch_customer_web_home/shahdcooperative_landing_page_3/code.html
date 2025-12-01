@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ShahdCooperative Landing Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#FFB627", // Golden Honey
+              "secondary": "#EADCA6", // Natural Beeswax
+              "text-dark": "#36454F", // Charcoal
+              "background-light": "#F8F8F8", // Off-White
+              "background-dark": "#231e0f", // Placeholder dark mode background
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"],
+              "serif": ["Playfair Display", "serif"]
+            },
+            borderRadius: {
+              "DEFAULT": "12px",
+              "lg": "1rem", 
+              "xl": "1.5rem",
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.hex-bg {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAdrkyx0lqxytnWhsjVlQLA8hPPr85aS065mh4PzbDlpEC9Y1UJVTr_FfJ1kQTznlk91CrjmGh6tjRS1sJj6WCo8lUM1aUdLGoCthV4G_kcSrPsIHrQyVf1krHwDyvTcH04scIUAtkdbF-ZPfLBpyt-ULWYcps-no0NH_sOjfaIB7bDXc2JjKO664yp7QjVrNari8fGRJ0cMMIr_yJ92UyDObinHl2x-KArGwb1Av62qddi_5qXw4VrCn4Psmw_OEoSTq7ywAU4PT4)
+    }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-dark">
+<div class="relative flex min-h-screen w-full flex-col">
+<header class="sticky top-0 z-50 flex items-center justify-center border-b border-secondary/50 bg-background-light/80 backdrop-blur-lg dark:border-primary/20 dark:bg-background-dark/80">
+<div class="w-full max-w-6xl px-4">
+<div class="flex h-16 items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-6 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold text-text-dark dark:text-background-light">ShahdCooperative</h2>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden items-center gap-6 md:flex">
+<a class="text-sm font-medium text-text-dark/80 transition-colors hover:text-text-dark dark:text-background-light/80 dark:hover:text-background-light" href="#">Shop</a>
+<a class="text-sm font-medium text-text-dark/80 transition-colors hover:text-text-dark dark:text-background-light/80 dark:hover:text-background-light" href="#">Our Story</a>
+<a class="text-sm font-medium text-text-dark/80 transition-colors hover:text-text-dark dark:text-background-light/80 dark:hover:text-background-light" href="#">Contact</a>
+</nav>
+<button class="flex h-10 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded bg-primary px-4 text-sm font-bold text-text-dark transition-transform hover:scale-105">
+<span class="truncate">Join Us</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1">
+<section class="w-full py-20 lg:py-32">
+<div class="container mx-auto max-w-6xl px-4">
+<div class="flex min-h-[480px] flex-col items-center justify-center gap-8 rounded-xl bg-cover bg-center p-8 text-center" data-alt="Golden honey dripping from a wooden dipper into a glass jar, surrounded by fresh lavender flowers." style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCaGpPAmBZw9kfbQZyZzwKjwMC-_LZ-QffjJ2invFwYEqhsfalfgd8Xju7DmaWS4tZVeu_x5hGCg9our1ot7TjmzWSSF6kPl3e01oGh4e3Yx3E3qaei_VVGkpExoXzmPNra4nB3MTwQxWI_rFq2ezijoD7Z6k1dpeCMSNYqHpEHeo7xSsypV0hZ90y9-wqR-94PHT2rbvKYFYQ2XId4dhM-CcqwQeDwjfGvNeaimd0WfsiQqPrXq--bJI4vt5RUk3AaMg2Ye87K5jc");'>
+<div class="flex flex-col gap-4">
+<h1 class="font-serif text-5xl font-bold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl">Pure, Organic Honey from Our Cooperative to Your Home</h1>
+<p class="mx-auto max-w-2xl text-lg text-white/90">Experience the natural sweetness and unparalleled quality of honey, ethically sourced from our dedicated beekeepers.</p>
+</div>
+<button class="flex h-12 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded bg-primary px-6 text-base font-bold text-text-dark transition-transform hover:scale-105">
+<span class="truncate">Explore Products</span>
+</button>
+</div>
+</div>
+</section>
+<section class="w-full py-12 md:py-20 lg:py-24">
+<div class="container mx-auto flex max-w-4xl flex-col items-center gap-4 px-4 text-center">
+<h2 class="font-serif text-3xl font-bold text-text-dark dark:text-background-light md:text-4xl">Our Story</h2>
+<p class="text-text-dark/80 dark:text-background-light/80 md:text-lg">ShahdCooperative is built on a foundation of community, sustainability, and a deep respect for nature. We are a collective of passionate beekeepers dedicated to organic practices, ensuring every jar of honey is as pure as nature intended.</p>
+</div>
+</section>
+<section class="w-full bg-secondary/20 py-12 md:py-20 lg:py-24 dark:bg-text-dark/10">
+<div class="container mx-auto max-w-6xl px-4">
+<div class="mb-12 flex flex-col items-center text-center">
+<h2 class="font-serif text-3xl font-bold text-text-dark dark:text-background-light md:text-4xl">Featured Products</h2>
+<p class="mt-2 max-w-2xl text-text-dark/80 dark:text-background-light/80">A curated selection of our finest honey, straight from the hive.</p>
+</div>
+<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+<div class="flex flex-col overflow-hidden rounded bg-background-light shadow-md transition-shadow hover:shadow-lg dark:bg-background-dark dark:shadow-primary/10">
+<img class="h-60 w-full object-cover" data-alt="A jar of wildflower honey with a wooden dipper resting on top." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN1brgTsaBVaYfqwT1fERXvn1KlOqohUScXxfqySRVBA9fxXoYJ5-fP0hSetPva7gtZjeEuE3hWLqoMcItg4u8BIbHkBepTju8S0xxVC1u-UShxL1E5QTJuKb_wuSiEdqS7c5yfNsIkah_htR11e3DBNVr4UEKHtpNE5sfhV85KFeKi2RbknMgL60C5hpQIkARFEpbv-ka4gJ9eEAlJptAzzKZOkNKrFxU8yVL04Gn2jODv87WbEEBvYiuTD0v6si8QmbL2dHGUWU"/>
+<div class="flex flex-1 flex-col p-6">
+<h3 class="text-xl font-bold text-text-dark dark:text-background-light">Wildflower Honey</h3>
+<p class="mt-2 flex-1 text-sm text-text-dark/70 dark:text-background-light/70">A delightful, multi-floral honey with a light and sweet taste.</p>
+<div class="mt-4 flex items-center justify-between">
+<span class="text-lg font-bold text-text-dark dark:text-background-light">$12.99</span>
+<button class="flex h-10 items-center justify-center gap-2 rounded bg-primary/20 px-4 text-sm font-bold text-text-dark transition-colors hover:bg-primary/40 dark:bg-primary/30 dark:hover:bg-primary/50">
+<span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                                        Add to Cart
+                                    </button>
+</div>
+</div>
+</div>
+<div class="flex flex-col overflow-hidden rounded bg-background-light shadow-md transition-shadow hover:shadow-lg dark:bg-background-dark dark:shadow-primary/10">
+<img class="h-60 w-full object-cover" data-alt="A jar of rich, dark Buckwheat honey with a honeycomb pattern in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa-GRCiv-FKZ68NhLQb3_Zi0Cs42YU-V-HAdVGxxi003EWwJRhJSBQ0pevSKXCKR6L97tSJnHTNNik-bbKSqYaEwFLCrcBc3MtWOh3pr-741tQHm7AQm6RHZa4sIzeqncEJ8i5liapj1jEsjOfjCIcHh7mQ_EpUW4i_bfiFxABvMWaRLtKthSYV1Ejfc7MCjn0ZJkDoEFP-Ze40RJLgSdA--02Te01YE459xpPiBA6LRccwTfaVGgCxQdphQHlIAVvS3XTxcX7rok"/>
+<div class="flex flex-1 flex-col p-6">
+<h3 class="text-xl font-bold text-text-dark dark:text-background-light">Buckwheat Honey</h3>
+<p class="mt-2 flex-1 text-sm text-text-dark/70 dark:text-background-light/70">Robust and full-bodied with notes of molasses and malt.</p>
+<div class="mt-4 flex items-center justify-between">
+<span class="text-lg font-bold text-text-dark dark:text-background-light">$15.99</span>
+<button class="flex h-10 items-center justify-center gap-2 rounded bg-primary/20 px-4 text-sm font-bold text-text-dark transition-colors hover:bg-primary/40 dark:bg-primary/30 dark:hover:bg-primary/50">
+<span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                                        Add to Cart
+                                    </button>
+</div>
+</div>
+</div>
+<div class="flex flex-col overflow-hidden rounded bg-background-light shadow-md transition-shadow hover:shadow-lg dark:bg-background-dark dark:shadow-primary/10">
+<img class="h-60 w-full object-cover" data-alt="A jar of creamy, pale Clover honey, next to a white clover flower." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdQ-GysznehhXrzP1JsdQoYpRscB-K_-9HdDe1cpAn2FK47UAiEGFumDGwQ1jguit_Lj5NPp6Xm7IozJ0Afd3byccz1eSLkdV_OVAu_oPJRPN5nvjtsfhXRej-gm3TXTtH09JShZutG4Lb6_B0QM0aSAWKDWzTB-PI63DxqnEu_QZXH897oegTvotuPHahpF8tYhnEQcmXJ0q3xMvKPRosGWKk0_NvCgpTSrvz0LD6tt-VaEk_xklozGGjNFNXzzqCMwgAdpnMFx4"/>
+<div class="flex flex-1 flex-col p-6">
+<h3 class="text-xl font-bold text-text-dark dark:text-background-light">Creamed Clover Honey</h3>
+<p class="mt-2 flex-1 text-sm text-text-dark/70 dark:text-background-light/70">Smooth, spreadable, and delicately sweet. Perfect for toast.</p>
+<div class="mt-4 flex items-center justify-between">
+<span class="text-lg font-bold text-text-dark dark:text-background-light">$14.99</span>
+<button class="flex h-10 items-center justify-center gap-2 rounded bg-primary/20 px-4 text-sm font-bold text-text-dark transition-colors hover:bg-primary/40 dark:bg-primary/30 dark:hover:bg-primary/50">
+<span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                                        Add to Cart
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="w-full py-12 md:py-20 lg:py-24 hex-bg">
+<div class="container mx-auto max-w-4xl px-4">
+<div class="mb-12 flex flex-col items-center text-center">
+<h2 class="font-serif text-3xl font-bold text-text-dark dark:text-background-light md:text-4xl">Sweet Words From Our Customers</h2>
+</div>
+<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+<div class="flex flex-col justify-center rounded border border-secondary/50 bg-background-light p-6 dark:border-primary/20 dark:bg-background-dark">
+<p class="text-text-dark/80 dark:text-background-light/80">"The best honey I've ever tasted. You can truly taste the quality and care that goes into every jar. The Wildflower honey is my absolute favorite!"</p>
+<span class="mt-4 font-bold text-text-dark dark:text-background-light">- Sarah J.</span>
+</div>
+<div class="flex flex-col justify-center rounded border border-secondary/50 bg-background-light p-6 dark:border-primary/20 dark:bg-background-dark">
+<p class="text-text-dark/80 dark:text-background-light/80">"I love supporting local and sustainable businesses. ShahdCooperative not only delivers incredible honey but also stands for values I believe in. Highly recommend!"</p>
+<span class="mt-4 font-bold text-text-dark dark:text-background-light">- Michael P.</span>
+</div>
+</div>
+</div>
+</section>
+<section class="w-full bg-secondary/20 py-12 md:py-20 lg:py-24 dark:bg-text-dark/10">
+<div class="container mx-auto flex max-w-4xl flex-col items-center gap-6 rounded-lg bg-background-light p-8 text-center shadow-lg dark:bg-background-dark md:p-12">
+<h2 class="font-serif text-3xl font-bold text-text-dark dark:text-background-light md:text-4xl">Join Our Cooperative Family</h2>
+<p class="max-w-xl text-text-dark/80 dark:text-background-light/80">Become a member to enjoy exclusive benefits, or make your first purchase today and taste the difference of truly natural honey.</p>
+<button class="flex h-12 min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded bg-primary px-6 text-base font-bold text-text-dark transition-transform hover:scale-105">
+<span class="truncate">Start Shopping Now</span>
+</button>
+</div>
+</section>
+<section class="w-full py-12 md:py-20 lg:py-24">
+<div class="container mx-auto max-w-4xl px-4">
+<div class="relative overflow-hidden rounded-lg bg-secondary/20 p-8 text-center dark:bg-text-dark/10 md:p-12">
+<div class="absolute -right-16 -top-16 size-48 text-primary/10 opacity-50 dark:text-primary/20">
+<svg fill="none" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<path d="M60 0L111.962 30V90L60 120L8.03848 90V30L60 0Z" fill="currentColor"></path>
+</svg>
+</div>
+<div class="absolute -bottom-20 -left-20 size-64 text-primary/10 opacity-50 dark:text-primary/20">
+<svg fill="none" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<path d="M60 0L111.962 30V90L60 120L8.03848 90V30L60 0Z" fill="currentColor"></path>
+</svg>
+</div>
+<div class="relative z-10">
+<h2 class="font-serif text-3xl font-bold text-text-dark dark:text-background-light md:text-4xl">Join Our Hive!</h2>
+<p class="mx-auto mt-4 max-w-2xl text-text-dark/80 dark:text-background-light/80">Stay in the loop with the latest news, special offers, and sweet stories from our cooperative.</p>
+<form class="mx-auto mt-8 flex max-w-lg flex-col gap-4 sm:flex-row">
+<input class="h-12 flex-1 rounded border-secondary bg-background-light px-4 text-text-dark placeholder-text-dark/50 focus:border-primary focus:ring-primary dark:border-primary/20 dark:bg-background-dark dark:text-background-light dark:placeholder-background-light/50" placeholder="Enter your email address" type="email"/>
+<button class="flex h-12 min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded bg-primary px-6 text-base font-bold text-text-dark transition-transform hover:scale-105" type="submit">
+<span class="truncate">Subscribe</span>
+</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="w-full bg-text-dark text-background-light/70">
+<div class="container mx-auto max-w-6xl px-4 py-12">
+<div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+<div class="col-span-2 md:col-span-1">
+<h3 class="text-lg font-bold text-background-light">ShahdCooperative</h3>
+<p class="mt-2 text-sm">Pure, organic honey from our hive to your home.</p>
+</div>
+<div>
+<h4 class="font-semibold text-background-light">Navigate</h4>
+<ul class="mt-4 space-y-2 text-sm">
+<li><a class="hover:text-primary" href="#">About Us</a></li>
+<li><a class="hover:text-primary" href="#">Products</a></li>
+<li><a class="hover:text-primary" href="#">FAQ</a></li>
+<li><a class="hover:text-primary" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-background-light">Legal</h4>
+<ul class="mt-4 space-y-2 text-sm">
+<li><a class="hover:text-primary" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold text-background-light">Follow Us</h4>
+<div class="mt-4 flex space-x-4">
+<a class="hover:text-primary" data-alt="Facebook icon" href="#"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z"></path></svg></a>
+<a class="hover:text-primary" data-alt="Instagram icon" href="#"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.07-1.645-.07-4.85s.012-3.585.07-4.85c.148-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"></path></svg></a>
+<a class="hover:text-primary" data-alt="Twitter icon" href="#"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616v.064c0 2.298 1.634 4.212 3.791 4.649-.69.188-1.432.233-2.193.084.629 1.956 2.445 3.379 4.6 3.419-2.07 1.623-4.678 2.588-7.52 2.588-.49 0-.974-.029-1.451-.086 2.685 1.725 5.872 2.73 9.282 2.73 11.135 0 17.229-9.239 17.229-17.229 0-.262-.006-.523-.018-.783.961-.695 1.798-1.562 2.457-2.548z"></path></svg></a>
+</div>
+</div>
+</div>
+<div class="mt-8 border-t border-background-light/20 pt-8 text-center text-sm">
+<p>© 2024 ShahdCooperative. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>

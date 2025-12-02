@@ -1,65 +1,56 @@
 import { create } from 'zustand';
-import { Notification } from '@/types/notification';
+import { persist } from 'zustand/middleware';
+
+export interface Notification {
+    id: string;
+    title: string;
+    message: string;
+    type: 'info' | 'success' | 'warning' | 'error';
+    isRead: boolean;
+    createdAt: string;
+}
 
 interface NotificationState {
     notifications: Notification[];
     unreadCount: number;
     addNotification: (notification: Notification) => void;
-    markAsRead: (notificationId: string) => void;
+    markAsRead: (id: string) => void;
     markAllAsRead: () => void;
-    removeNotification: (notificationId: string) => void;
-    setNotifications: (notifications: Notification[]) => void;
-    updateUnreadCount: () => void;
+    clearNotifications: () => void;
 }
 
-export const useNotificationStore = create<NotificationState>((set, get) => ({
-    notifications: [],
-    unreadCount: 0,
-
-    addNotification: (notification) => {
-        set((state) => {
-            const updated = [notification, ...state.notifications];
-            const unread = updated.filter(n => !n.isRead).length;
-            return { notifications: updated, unreadCount: unread };
-        });
-    },
-
-    markAsRead: (notificationId) => {
-        set((state) => {
-            const updated = state.notifications.map((n) =>
-                n.notificationId === notificationId ? { ...n, isRead: true, readAt: new Date().toISOString() } : n
-            );
-            const unread = updated.filter(n => !n.isRead).length;
-            return { notifications: updated, unreadCount: unread };
-        });
-    },
-
-    markAllAsRead: () => {
-        set((state) => ({
-            notifications: state.notifications.map((n) => ({
-                ...n,
-                isRead: true,
-                readAt: n.readAt || new Date().toISOString(),
-            })),
+export const useNotificationStore = create<NotificationState>()(
+    persist(
+        (set) => ({
+            notifications: [],
             unreadCount: 0,
-        }));
-    },
-
-    removeNotification: (notificationId) => {
-        set((state) => {
-            const updated = state.notifications.filter((n) => n.notificationId !== notificationId);
-            const unread = updated.filter(n => !n.isRead).length;
-            return { notifications: updated, unreadCount: unread };
-        });
-    },
-
-    setNotifications: (notifications) => {
-        const unread = notifications.filter(n => !n.isRead).length;
-        set({ notifications, unreadCount: unread });
-    },
-
-    updateUnreadCount: () => {
-        const unread = get().notifications.filter(n => !n.isRead).length;
-        set({ unreadCount: unread });
-    },
-}));
+            addNotification: (notification) =>
+                set((state) => ({
+                    notifications: [notification, ...state.notifications],
+                    unreadCount: state.unreadCount + 1,
+                })),
+            markAsRead: (id) =>
+                set((state) => {
+                    const notification = state.notifications.find((n) => n.id === id);
+                    if (notification && !notification.isRead) {
+                        return {
+                            notifications: state.notifications.map((n) =>
+                                n.id === id ? { ...n, isRead: true } : n
+                            ),
+                            unreadCount: Math.max(0, state.unreadCount - 1),
+                        };
+                    }
+                    return state;
+                }),
+            markAllAsRead: () =>
+                set((state) => ({
+                    notifications: state.notifications.map((n) => ({ ...n, isRead: true })),
+                    unreadCount: 0,
+                })),
+            clearNotifications: () => set({ notifications: [], unreadCount: 0 }),
+        }),
+        {
+            name: 'notification-storage',
+        }
+    )
+);

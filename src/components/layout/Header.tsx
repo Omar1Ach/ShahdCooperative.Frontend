@@ -1,9 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { clsx } from 'clsx';
 import { useCartStore } from '@/lib/store/cartStore';
 import { useAuthStore } from '@/lib/store/authStore';
+import Logo from './Logo';
+import Button from '../ui/Button';
 import CartDrawer from '@/components/cart/CartDrawer';
 import NotificationCenter from '@/components/notifications/NotificationCenter';
 
@@ -11,45 +15,62 @@ export default function Header() {
     const { user } = useAuthStore();
     const { getTotalItems } = useCartStore();
     const [isCartOpen, setIsCartOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const pathname = usePathname();
     const totalItems = getTotalItems();
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 10);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const navLinks = [
+        { href: '/', label: 'Home' },
+        { href: '/products', label: 'Shop' },
+        { href: '/about', label: 'Our Story' },
+        { href: '/contact', label: 'Contact' },
+    ];
 
     return (
         <>
-            <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-30">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-16">
+            <header
+                className={clsx(
+                    'sticky top-0 z-50 w-full transition-all duration-300 border-b',
+                    isScrolled
+                        ? 'bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-lg shadow-sm border-golden-honey/20'
+                        : 'bg-transparent border-border-light/20 dark:border-border-dark/20'
+                )}
+            >
+                <div className="container mx-auto px-4">
+                    <div className="flex h-16 items-center justify-between">
                         {/* Logo */}
-                        <Link href="/" className="flex items-center gap-2">
-                            <span className="text-2xl">🍯</span>
-                            <span className="text-xl font-bold text-gray-900 dark:text-white">
-                                ShahdCooperative
-                            </span>
-                        </Link>
+                        <Logo size="md" variant="full" />
 
-                        {/* Navigation */}
-                        <nav className="hidden md:flex items-center gap-6">
-                            <Link
-                                href="/products"
-                                className="text-gray-700 dark:text-gray-300 hover:text-amber-600 dark:hover:text-amber-400 font-medium transition-colors"
-                            >
-                                Products
-                            </Link>
-                            <Link
-                                href="/about"
-                                className="text-gray-700 dark:text-gray-300 hover:text-amber-600 dark:hover:text-amber-400 font-medium transition-colors"
-                            >
-                                About
-                            </Link>
-                            <Link
-                                href="/contact"
-                                className="text-gray-700 dark:text-gray-300 hover:text-amber-600 dark:hover:text-amber-400 font-medium transition-colors"
-                            >
-                                Contact
-                            </Link>
+                        {/* Desktop Navigation */}
+                        <nav className="hidden items-center gap-6 md:flex">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className={clsx(
+                                        'text-sm font-medium transition-colors',
+                                        pathname === link.href
+                                            ? 'text-golden-honey'
+                                            : 'text-text-light/80 dark:text-text-dark/80 hover:text-golden-honey'
+                                    )}
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
                         </nav>
 
                         {/* Actions */}
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3">
                             {user ? (
                                 <>
                                     <NotificationCenter />
@@ -57,52 +78,92 @@ export default function Header() {
                                     {/* Cart Button */}
                                     <button
                                         onClick={() => setIsCartOpen(true)}
-                                        className="relative p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
+                                        className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-border-light dark:bg-border-dark text-text-light dark:text-text-dark hover:bg-golden-honey/20 transition-colors"
+                                        aria-label="Shopping cart"
                                     >
-                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                                        </svg>
+                                        <span className="material-symbols-outlined">shopping_cart</span>
                                         {totalItems > 0 && (
-                                            <span className="absolute -top-1 -right-1 w-5 h-5 bg-amber-600 text-white text-xs font-bold rounded-full flex items-center justify-center">
+                                            <div className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-golden-honey text-xs font-bold text-text-light">
                                                 {totalItems}
-                                            </span>
+                                            </div>
                                         )}
                                     </button>
 
                                     {/* User Menu */}
-                                    <div className="relative group">
-                                        <Link href="/dashboard" className="flex items-center gap-2 p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors">
-                                            <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-full flex items-center justify-center font-bold">
-                                                {user.firstName?.[0]}
-                                            </div>
-                                        </Link>
-                                    </div>
+                                    <Link
+                                        href="/dashboard"
+                                        className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full bg-golden-honey/20 text-golden-honey font-bold hover:bg-golden-honey/30 transition-colors"
+                                    >
+                                        {user.firstName?.[0]}
+                                    </Link>
                                 </>
                             ) : (
                                 <>
                                     <button
                                         onClick={() => setIsCartOpen(true)}
-                                        className="relative p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
+                                        className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-border-light dark:bg-border-dark text-text-light dark:text-text-dark hover:bg-golden-honey/20 transition-colors"
+                                        aria-label="Shopping cart"
                                     >
-                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                                        </svg>
+                                        <span className="material-symbols-outlined">shopping_cart</span>
                                         {totalItems > 0 && (
-                                            <span className="absolute -top-1 -right-1 w-5 h-5 bg-amber-600 text-white text-xs font-bold rounded-full flex items-center justify-center">
+                                            <div className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-golden-honey text-xs font-bold text-text-light">
                                                 {totalItems}
-                                            </span>
+                                            </div>
                                         )}
                                     </button>
-                                    <Link
-                                        href="/login"
-                                        className="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-lg transition-colors"
+                                    <Button
+                                        variant="primary"
+                                        size="sm"
+                                        className="hidden md:inline-flex"
+                                        onClick={() => {
+                                            window.location.href = '/login';
+                                        }}
                                     >
-                                        Login
-                                    </Link>
+                                        Join Us
+                                    </Button>
                                 </>
                             )}
+
+                            {/* Mobile Menu Button */}
+                            <button
+                                className="md:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-border-light dark:bg-border-dark text-text-light dark:text-text-dark"
+                                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                                aria-label="Toggle menu"
+                            >
+                                <span className="material-symbols-outlined">
+                                    {isMobileMenuOpen ? 'close' : 'menu'}
+                                </span>
+                            </button>
                         </div>
                     </div>
+
+                    {/* Mobile Menu */}
+                    {isMobileMenuOpen && (
+                        <div className="md:hidden border-t border-border-light dark:border-border-dark py-4 animate-slide-in">
+                            <nav className="flex flex-col gap-4">
+                                {navLinks.map((link) => (
+                                    <Link
+                                        key={link.href}
+                                        href={link.href}
+                                        className={clsx(
+                                            'text-base font-medium transition-colors px-4 py-2',
+                                            pathname === link.href
+                                                ? 'text-golden-honey bg-golden-honey/10 rounded-lg'
+                                                : 'text-text-light dark:text-text-dark'
+                                        )}
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                ))}
+                                {!user && (
+                                    <Button variant="primary" size="md" fullWidth className="mt-2">
+                                        Join Us
+                                    </Button>
+                                )}
+                            </nav>
+                        </div>
+                    )}
                 </div>
             </header>
 

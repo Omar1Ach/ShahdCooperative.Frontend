@@ -1,6 +1,9 @@
 import { Product } from '@/types/product';
 import Link from 'next/link';
+import Image from 'next/image';
 import { formatCurrency } from '@/lib/utils/helpers';
+import Badge from '../ui/Badge';
+import Card from '../ui/Card';
 
 interface ProductCardProps {
     product: Product;
@@ -12,79 +15,93 @@ export default function ProductCard({ product }: ProductCardProps) {
 
     return (
         <Link href={`/products/${product.productId}`}>
-            <div className="group bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105">
+            <Card padding="none" hover className="group overflow-hidden h-full flex flex-col">
                 {/* Product Image */}
-                <div className="relative aspect-square bg-gray-100 dark:bg-gray-700 overflow-hidden">
+                <div className="relative aspect-square bg-border-light/50 dark:bg-border-dark/50 overflow-hidden">
                     {product.imageUrl ? (
-                        <img
+                        <Image
                             src={product.imageUrl}
                             alt={product.name}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                            fill
+                            className="object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                     ) : (
-                        <div className="w-full h-full flex items-center justify-center text-gray-400 dark:text-gray-500">
-                            <svg className="w-20 h-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
+                        <div className="w-full h-full flex items-center justify-center text-text-muted-light dark:text-text-muted-dark">
+                            <span className="material-symbols-outlined" style={{ fontSize: '4rem' }}>
+                                image
+                            </span>
                         </div>
                     )}
 
                     {/* Stock Badge */}
-                    {isOutOfStock && (
-                        <div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
-                            Out of Stock
-                        </div>
-                    )}
-                    {isLowStock && !isOutOfStock && (
-                        <div className="absolute top-2 right-2 bg-yellow-600 text-white text-xs font-bold px-3 py-1 rounded-full">
-                            Low Stock
-                        </div>
-                    )}
+                    <div className="absolute top-3 right-3">
+                        {isOutOfStock && (
+                            <Badge variant="danger" size="sm">
+                                <span className="material-symbols-outlined text-xs">block</span>
+                                Out of Stock
+                            </Badge>
+                        )}
+                        {isLowStock && !isOutOfStock && (
+                            <Badge variant="warning" size="sm">
+                                <span className="material-symbols-outlined text-xs">warning</span>
+                                Low Stock
+                            </Badge>
+                        )}
+                    </div>
                 </div>
 
                 {/* Product Info */}
-                <div className="p-4">
+                <div className="p-5 flex flex-col flex-1">
+                    {/* Category */}
                     <div className="mb-2">
-                        <span className="text-xs text-amber-600 dark:text-amber-400 font-semibold uppercase">
+                        <Badge variant="default" size="sm">
                             {product.category}
-                        </span>
+                        </Badge>
                     </div>
 
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 line-clamp-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                    {/* Product Name */}
+                    <h3 className="text-lg font-bold text-text-light dark:text-text-dark mb-2 line-clamp-2 group-hover:text-golden-honey transition-colors">
                         {product.name}
                     </h3>
 
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
+                    {/* Description */}
+                    <p className="text-sm text-text-muted-light dark:text-text-muted-dark mb-4 line-clamp-2 flex-1">
                         {product.description}
                     </p>
 
-                    <div className="flex items-center justify-between">
+                    {/* Price and Stock */}
+                    <div className="flex items-end justify-between mt-auto pt-4 border-t border-border-light dark:border-border-dark">
                         <div>
-                            <p className="text-2xl font-bold text-amber-600 dark:text-amber-400">
+                            <p className="text-2xl font-bold text-golden-honey">
                                 {formatCurrency(product.price)}
                             </p>
                             {product.brand && (
-                                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                                    {product.brand}
+                                <p className="text-xs text-text-muted-light dark:text-text-muted-dark mt-1">
+                                    by {product.brand}
                                 </p>
                             )}
                         </div>
 
                         <div className="text-right">
-                            <p className="text-sm text-gray-600 dark:text-gray-400">
-                                {product.stockQuantity} in stock
+                            <div className="flex items-center gap-1 text-text-muted-light dark:text-text-muted-dark">
+                                <span className="material-symbols-outlined text-base">inventory_2</span>
+                                <p className="text-sm font-medium">
+                                    {product.stockQuantity}
+                                </p>
+                            </div>
+                            <p className="text-xs text-text-muted-light dark:text-text-muted-dark">
+                                SKU: {product.sku}
                             </p>
                         </div>
                     </div>
 
-                    {/* SKU */}
-                    <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
-                        <p className="text-xs text-gray-500 dark:text-gray-400">
-                            SKU: {product.sku}
-                        </p>
-                    </div>
+                    {/* Add to Cart Button (Visible on hover) */}
+                    <button className="mt-4 w-full h-11 flex items-center justify-center gap-2 bg-golden-honey text-text-light rounded-lg font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                        <span className="material-symbols-outlined">add_shopping_cart</span>
+                        Add to Cart
+                    </button>
                 </div>
-            </div>
+            </Card>
         </Link>
     );
 }

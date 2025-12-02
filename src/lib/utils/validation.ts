@@ -51,6 +51,30 @@ export const registerSchema = z.object({
 });
 
 /**
+ * Checkout form validation
+ */
+export const checkoutSchema = z.object({
+    fullName: z.string().min(2, 'Full name is required'),
+    shippingStreet: z.string().min(5, 'Street address is required'),
+    shippingCity: z.string().min(2, 'City is required'),
+    shippingState: z.string().min(2, 'State/Province is required'),
+    shippingPostalCode: z.string().min(3, 'Postal code is required'),
+    shippingCountry: z.string().min(2, 'Country is required').default('USA'),
+    paymentMethod: z.enum(['card', 'paypal']).default('card'),
+    cardNumber: z.string().optional(),
+    expirationDate: z.string().optional(),
+    cvv: z.string().optional(),
+}).refine((data) => {
+    if (data.paymentMethod === 'card') {
+        return data.cardNumber && data.expirationDate && data.cvv;
+    }
+    return true;
+}, {
+    message: 'Card details are required',
+    path: ['cardNumber'],
+});
+
+/**
  * Change password validation
  */
 export const changePasswordSchema = z.object({

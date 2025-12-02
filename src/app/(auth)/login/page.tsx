@@ -7,7 +7,9 @@ export const metadata = {
 
 export default function LoginPage() {
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 to-orange-100 dark:from-gray-900 dark:to-gray-800 p-4">
+        <div className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden p-6 sm:p-8 bg-hex-pattern bg-background-light dark:bg-background-dark">
+            {/* Hexagon background pattern */}
+            <div className="absolute inset-0 z-0 h-full w-full opacity-5 dark:opacity-[0.03]" />
             <LoginForm />
         </div>
     );

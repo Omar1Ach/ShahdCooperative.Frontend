@@ -65,3 +65,31 @@ export interface ProductFilters {
     maxPrice?: number;
     inStockOnly?: boolean;
 }
+
+// Review Types
+export interface Review {
+    reviewId: string;
+    productId: string;
+    userId: string;
+    userName: string;
+    userAvatar?: string;
+    rating: number;
+    title?: string;
+    comment: string;
+    isVerifiedPurchase: boolean;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface ReviewListResponse {
+    reviews: Review[];
+    totalCount: number;
+    averageRating: number;
+    ratingDistribution: {
+        1: number;
+        2: number;
+        3: number;
+        4: number;
+        5: number;
+    };
+}

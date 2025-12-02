@@ -7,7 +7,9 @@ import { Order } from '@/types/order';
 import { formatCurrency, formatDate } from '@/lib/utils/helpers';
 import { ORDER_STATUS_LABELS } from '@/lib/utils/constants';
 import { getErrorMessage } from '@/lib/api/auth';
+import { useCartStore } from '@/lib/store/cartStore';
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
+import OrderTimeline from '@/components/orders/OrderTimeline';
 
 interface OrderDetailPageProps {
     params: {
@@ -59,6 +61,39 @@ function OrderDetailContent({ params }: OrderDetailPageProps) {
         }
     };
 
+    const handleReorder = () => {
+        if (!order) return;
+
+        const { clearCart, addItem } = useCartStore.getState();
+
+        // Clear existing cart and add items
+        clearCart();
+
+        // Note: In production, you'd fetch full product details from API
+        // For now, creating mock products from order items
+        order.orderItems.forEach(item => {
+            const productMock = {
+                productId: item.productId,
+                name: item.productName || 'Product',
+                price: item.unitPrice,
+                stockQuantity: 100,
+                sku: `SKU-${item.productId}`,
+                category: 'Honey',
+                description: '',
+                imageUrl: '',
+                brand: '',
+                reorderLevel: 10,
+                weight: null,
+                dimensions: null,
+                isActive: true,
+            };
+
+            addItem(productMock, item.quantity);
+        });
+
+        router.push('/products');
+    };
+
     if (isLoading) {
         return (
             <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
@@ -99,6 +134,7 @@ function OrderDetailContent({ params }: OrderDetailPageProps) {
     };
 
     const canCancel = order.status === 'Pending' || order.status === 'Confirmed';
+    const canReorder = order.status === 'Delivered' || order.status === 'Cancelled';
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
@@ -136,19 +172,13 @@ function OrderDetailContent({ params }: OrderDetailPageProps) {
                             {ORDER_STATUS_LABELS[order.status as keyof typeof ORDER_STATUS_LABELS]}
                         </span>
                     </div>
-
-                    {order.trackingNumber && (
-                        <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                            <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Tracking Number</p>
-                            <p className="font-mono font-bold text-lg text-gray-900 dark:text-white">
-                                {order.trackingNumber}
-                            </p>
-                        </div>
-                    )}
                 </div>
 
+                {/* Order Timeline */}
+                <OrderTimeline order={order} />
+
                 {/* Order Items */}
-                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6">
+                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6 mt-6">
                     <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Order Items</h2>
                     <div className="space-y-4">
                         {order.orderItems.map((item) => (
@@ -187,8 +217,8 @@ function OrderDetailContent({ params }: OrderDetailPageProps) {
                 </div>
 
                 {/* Actions */}
-                {canCancel && (
-                    <div className="flex gap-4">
+                <div className="flex gap-4">
+                    {canCancel && (
                         <button
                             onClick={handleCancelOrder}
                             disabled={isCancelling}
@@ -196,8 +226,17 @@ function OrderDetailContent({ params }: OrderDetailPageProps) {
                         >
                             {isCancelling ? 'Cancelling...' : 'Cancel Order'}
                         </button>
-                    </div>
-                )}
+                    )}
+
+                    {canReorder && (
+                        <button
+                            onClick={handleReorder}
+                            className={`${canCancel ? 'flex-1' : 'w-full'} bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-lg transition-colors`}
+                        >
+                            📦 Reorder Items
+                        </button>
+                    )}
+                </div>
 
                 {error && (
                     <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400">
@@ -209,7 +248,7 @@ function OrderDetailContent({ params }: OrderDetailPageProps) {
     );
 }
 
-export default function OrderDetailPage(props: OrderDetailPageProps) {
+export default function OrderDetailPage(props: OrderDetail PageProps) {
     return (
         <ProtectedRoute>
             <OrderDetailContent {...props} />
